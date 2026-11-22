@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-import { MediaDeviceMenu, TrackReference, useLocalParticipant } from '@livekit/components-react';
-import { Track } from 'livekit-client';
+import { MediaDeviceMenu, useLocalParticipant } from '@livekit/components-react';
 
 export function CameraSettings() {
-  const { cameraTrack, localParticipant } = useLocalParticipant();
+  useLocalParticipant();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>

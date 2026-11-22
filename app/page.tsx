@@ -36,15 +36,15 @@ function ClassroomHome() {
         <h1>MVSR Virtual Classroom</h1>
         <p>Sign in with your official <strong>@mvsrec.edu.in</strong> Google account to join or host classes.</p>
         {accessError && (
-          <p style={{ color: '#ff6b6b', background: '#2b1111', padding: '10px 16px', borderRadius: '8px' }}>
-            Access Denied: Only @mvsrec.edu.in email accounts are allowed.
-          </p>
+          <div style={{ color: '#ff6b6b', background: '#2b1111', padding: '12px 16px', borderRadius: '8px', maxWidth: '360px' }}>
+            <strong>Access Denied:</strong> That account is not an @mvsrec.edu.in email. Please tap below to choose your college account.
+          </div>
         )}
         <button
-          onClick={() => signIn('google')}
+          onClick={() => signIn('google', undefined, { prompt: 'select_account' })}
           style={{ padding: '12px 24px', fontSize: '16px', borderRadius: '8px', background: '#2563eb', color: 'white', border: 'none', cursor: 'pointer' }}
         >
-          Sign in with @mvsrec.edu.in
+          {accessError ? 'Choose another Google account' : 'Sign in with Google'}
         </button>
       </main>
     );
@@ -70,12 +70,14 @@ function ClassroomHome() {
           Join / Start Class
         </button>
       </form>
-      <button
-        onClick={() => signOut()}
-        style={{ marginTop: '20px', background: 'transparent', color: '#9ca3af', border: '1px solid #444', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer' }}
-      >
-        Sign Out
-      </button>
+      <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+        <button
+          onClick={() => signOut({ callbackUrl: '/' })}
+          style={{ background: 'transparent', color: '#9ca3af', border: '1px solid #444', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer' }}
+        >
+          Switch Account / Sign Out
+        </button>
+      </div>
     </main>
   );
 }
